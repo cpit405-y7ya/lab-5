@@ -1,0 +1,69 @@
+body{
+    background-color: #31363F;
+    color: #76ABAE;
+}
+.center {
+    margin: auto;
+    text-align: center;
+}
+
+#gallery{
+    width: 50%;
+    min-width: 50%;
+    height: auto;
+    min-height: 200px;
+    background-color: #222831;
+    border-radius: 1rem;
+    border:dashed 3px #76ABAE;
+}
+
+.gallery-image {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 1rem;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+}
+
+.gallery-item {
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+    position: relative;
+    margin: 10px;
+
+}
+
+.gallery-item:hover .gallery-overlay{
+    opacity: 1;
+}
+
+
+.gallery-overlay{
+    float: left;
+    top:0;
+    left: 0;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 100%;
+    width: 100%;
+    border-radius: 1rem;
+    transition: 0.1s;
+    opacity: 0;
+}
+
+.gallery-delete {
+    width: 50px;
+    height: 50px;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    border-radius: 1rem;
+    border:0;
+    background-color: #c54747;
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+}
