@@ -52,18 +52,45 @@ body{
     opacity: 0;
 }
 
-.gallery-delete {
+.gallery-buttons{
+    margin-top: 50%;
+    transform: translateY(-50%);
+}
+
+.gallery-buttons button{
     width: 50px;
     height: 50px;
-    top: 50%;
-    left: 50%;
-    position: absolute;
-    transform: translate(-50%,-50%);
     border-radius: 1rem;
     border:0;
-    background-color: #c54747;
     color: white;
     font-size: 30px;
     font-weight: bold;
     cursor: pointer;
+    margin: 4px;
+}
+.gallery-delete {
+    background-color: #c54747;
+}
+
+
+.gallery-preview {
+    background-color: #507fd6;
+}
+
+.preview-image{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.preview-image img{
+    position: fixed;
+    width: 80%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }

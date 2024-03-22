@@ -2,7 +2,7 @@ const VALID_TYPES = [
     "image/jpeg",
 ];
 
-let gallery = document.querySelector("#gallery");
+const gallery = document.querySelector("#gallery");
 
 gallery.addEventListener("dragover", function (e) {
   e.preventDefault();
@@ -13,13 +13,11 @@ gallery.addEventListener("drop", handleDrop);
 function handleDrop(e) {
   e.preventDefault();
 
-  console.log(e.dataTransfer.files);
   for (let file of e.dataTransfer.files) {
     if(!isValidType(file.type)){
         // TODO: handle file type is not supported exception
         continue;
     }
-
     addGalleryItem(file);
   }
 }
@@ -42,19 +40,52 @@ function addGalleryItem(file){
       const overlay = document.createElement("div");
       overlay.classList.add("gallery-overlay");
 
-      let deleteButton = document.createElement("button");
+      const buttons = document.createElement("div");
+      buttons.classList.add("gallery-buttons");
+
+
+      const deleteButton = document.createElement("button");
       deleteButton.classList.add("gallery-delete");
       deleteButton.textContent = "X";
 
-      deleteButton.addEventListener("click", deleteGalleryItem);
+      const previewButton = document.createElement("button");
+      previewButton.classList.add("gallery-preview")
+      previewButton.textContent = "🔍";
+      
 
-      overlay.appendChild(deleteButton);
+      deleteButton.addEventListener("click", deleteGalleryItem);
+      previewButton.addEventListener("click", previewImage);
+
+      buttons.appendChild(deleteButton)
+      buttons.appendChild(previewButton)
+      overlay.appendChild(buttons);
       itemDiv.appendChild(overlay);
       itemDiv.appendChild(img);
       gallery.appendChild(itemDiv);
     };
 }
 
+function previewImage(e){
+  const selectedImage = e.target.closest(".gallery-item").querySelector("img");
+
+  const previewImage = document.createElement("div");
+  previewImage.classList.add("preview-image");
+
+  const image = document.createElement("img");
+  image.src = selectedImage.src;
+
+  previewImage.addEventListener("click",handleClosePreview);
+
+  previewImage.appendChild(image);
+  gallery.appendChild(previewImage);
+}
+
+function handleClosePreview(e){
+  const preview = gallery.querySelector(".preview-image");
+  if(e.target == preview){
+    preview.remove();
+  }
+}
 
 function isValidType(type){
     return VALID_TYPES.includes(type);
